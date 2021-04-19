@@ -11,20 +11,20 @@ const zipInput = document.getElementById('zip')
 formEl.addEventListener('submit', (e) => {
   e.preventDefault()
   const zip = zipInput.value
-  getWeather('3ec9bf803e2be1709ff0a2b7dc503967', zip)
-    .then(res => res.json())
-    .then(json => {
-      console.log(json)
-    })
-    .catch(err => console.log(err.message))
+  getWeather('3ec9bf803e2be1709ff0a2b7dc503967', zip).then((w) => { console.log(w) })
+
 })
 
 // Functions
-function getWeather(key, zip) {
+async function getWeather(key, zip) {
   const apiKey = key
   const units = 'imperial'
   const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${units}`
-  return fetch(path)
+
+  const res = await fetch(path)
+  const json = await res.json()
+
+  return json
 }
 
 // // Functions
