@@ -1,54 +1,37 @@
-// ------------------------------------------------------
-// Developer Code
+// // ------------------------------------------------------
+// // Developer Code
 
-// Get Element refererences
-const tempEl = document.getElementById('temp')
-const descEl = document.getElementById('desc')
-const formEl = document.getElementById('form')
-const zipInput = document.getElementById('zip')
+// // Get Element refererences
+// const tempEl = document.getElementById('temp')
+// const descEl = document.getElementById('desc')
+// const formEl = document.getElementById('form')
+// const zipInput = document.getElementById('zip')
 
-// Define event listeners
-formEl.addEventListener('submit', (e) => {
-  e.preventDefault()
-  const zip = zipInput.value
-  getWeather('3ec9bf803e2be1709ff0a2b7dc503967', zip, "zip", 'imperial').then((w) => { console.log(w) })
+// // Define event listeners
+// formEl.addEventListener('submit', (e) => {
+//   e.preventDefault()
+//   const zip = zipInput.value
+//   getWeather('3ec9bf803e2be1709ff0a2b7dc503967', zip, "zip", 'imperial').then((w) => { console.log(w) })
 
-})
+// })
 
-// Functions
-async function getWeather(apiKey, location, locationType, units) {
+// // Functions
+// async function getWeather(apiKey, location, locationType, units) {
 
-  const locationString = getLocationString(location, locationType)
-  const path = `https://api.openweathermap.org/data/2.5/weather?${locationString}&appid=${apiKey}&units=${units}`
+//   const locationString = getLocationString(location, locationType)
+//   const path = `https://api.openweathermap.org/data/2.5/weather?${locationString}&appid=${apiKey}&units=${units}`
 
-  console.log(path)
+//   console.log(path)
 
-  const res = await fetch(path)
-  const json = await res.json()
+//   const res = await fetch(path)
+//   const json = await res.json()
 
-  return json
-}
+//   return json
+// }
 
-function getLocationString(location, locationType) {
-  let locationString = ""
+// function getLocationString(location, locationType) {
 
-  switch (locationType) {
-    case "zip":
-      locationString = `zip=${location}`
-      break;
-    case "cityID":
-      locationString = `id=${location}`
-      break;
-    case "geocoordinates":
-      locationString = `lat=${location.lat}&lon=${location.lon}`
-      break;
-    case "cityName":
-    default:
-      locationString = `q=${location}`
-  }
-
-  return locationString
-}
+// }
 
 // // Functions
 // function getWeather(key, zip, callback) {
@@ -62,3 +45,7 @@ function getLocationString(location, locationType) {
 //     })
 //     .catch(err => console.log(err.message))
 // }
+
+const w = new WeatherOrNot('3ec9bf803e2be1709ff0a2b7dc503967')
+w.zip = "92328"
+w.weatherForZip().then((weather) => { console.log(weather) })
