@@ -1,0 +1,29 @@
+{
+  "name": "@jewarner57/weatherornot",
+  "version": "1.0.0",
+  "description": "An OpenWeatherMap API wrapper built with javascript",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jewarner57/WeatherOrNot.git"
+  },
+  "keywords": [
+    "weather",
+    "openweather",
+    "forecast"
+  ],
+  "author": "Jonathan Warner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jewarner57/WeatherOrNot/issues"
+  },
+  "homepage": "https://github.com/jewarner57/WeatherOrNot#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}

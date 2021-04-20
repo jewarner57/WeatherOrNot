@@ -1,51 +1,62 @@
-// // ------------------------------------------------------
-// // Developer Code
+import fetch from 'node-fetch'
 
-// // Get Element refererences
-// const tempEl = document.getElementById('temp')
-// const descEl = document.getElementById('desc')
-// const formEl = document.getElementById('form')
-// const zipInput = document.getElementById('zip')
+export class WeatherOrNot {
+  constructor(apiKey) {
+    this.apiKey = apiKey
+    this.zip = ""
+    this.cityName = ""
+    this.cityID = ""
+    this.lat = 0
+    this.lon = 0
+    this.useMetric = false
+  }
 
-// // Define event listeners
-// formEl.addEventListener('submit', (e) => {
-//   e.preventDefault()
-//   const zip = zipInput.value
-//   getWeather('3ec9bf803e2be1709ff0a2b7dc503967', zip, "zip", 'imperial').then((w) => { console.log(w) })
+  // Get the openweather api url for this object for a specific location type
+  getUrlString(locationString, locationType) {
+    switch (locationType) {
+      case "zip":
+        locationString = `zip=${this.zip}`
+        break;
+      case "cityID":
+        locationString = `id=${this.cityID}`
+        break;
+      case "geocoordinates":
+        locationString = `lat=${this.lat}&lon=${this.lon}`
+        break;
+      case "cityName":
+      default:
+        locationString = `q=${this.cityName}`
+    }
+    return `https://api.openweathermap.org/data/2.5/weather?${locationString}&appid=${this.apiKey}&units=${this.units}`
+  }
 
-// })
+  async reqApi(url) {
+    const path = url
 
-// // Functions
-// async function getWeather(apiKey, location, locationType, units) {
+    const res = await fetch(path)
+    const json = await res.json()
 
-//   const locationString = getLocationString(location, locationType)
-//   const path = `https://api.openweathermap.org/data/2.5/weather?${locationString}&appid=${apiKey}&units=${units}`
+    return json
+  }
 
-//   console.log(path)
+  weatherForCity() {
+    return this.reqApi(this.getUrlString(this.cityName, "cityName"))
+  }
 
-//   const res = await fetch(path)
-//   const json = await res.json()
+  weatherForId() {
+    return this.reqApi(this.getUrlString(this.cityID, "cityID"))
+  }
 
-//   return json
-// }
+  weatherForGeo() {
+    return this.reqApi(this.getUrlString({ "lat": this.lat, "lon": this.lon }, "geocoordinates"))
+  }
 
-// function getLocationString(location, locationType) {
+  weatherForZip() {
+    return this.reqApi(this.getUrlString(this.zip, "zip"))
+  }
 
-// }
+  getWeatherUpdates() {
+    // Not sure what he has in mind for this.
+  }
 
-// // Functions
-// function getWeather(key, zip, callback) {
-//   const apiKey = key
-//   const units = 'imperial'
-//   const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${units}`
-//   fetch(path)
-//     .then(res => res.json())
-//     .then(json => {
-//       callback(json)
-//     })
-//     .catch(err => console.log(err.message))
-// }
-
-const w = new WeatherOrNot('3ec9bf803e2be1709ff0a2b7dc503967')
-w.zip = "92328"
-w.weatherForZip().then((weather) => { console.log(weather) })
+}
