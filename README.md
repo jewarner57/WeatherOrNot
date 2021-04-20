@@ -20,19 +20,27 @@ w = new WeatherOrNot('Your Api Key')
 
 #### Set the location
 ``` javascript
-w = new WeatherOrNot('Your Api Key')
 // You can use a zip, cityName, cityID, or lat, lon
 w.zip = "94109"
 w.cityName = "San Francisco"
-// ...
+w.cityID = 42
+w.lat = 37.76
+w.lon = -122.41
 ```
-### Get the weather
+#### Get the weather
 ``` javascript
-w = new WeatherOrNot('Your Api Key')
-// You can use a zip, cityName, cityID, or lat, lon
-w.zip = "94109"
-w.cityName = "San Francisco"
-// Get the weather
-w.weatherForZip() => {local weather}
-w.weatherForCity() => {local weather}
+// You can get the weather using, zipcode, city name, city ID, and geocoordinates
+// Each weather method returns a promise containing
+// a javascript object filled with the weather data.
+w.weatherForZip()
+w.weatherForCity()
+w.weatherForId()
+w.weatherForGeo()
+```
+
+#### Change the units
+``` javascript
+// You can change what units the weather is returned in:
+// Weather is in metric by default
+w.units = "imperial"
 ```

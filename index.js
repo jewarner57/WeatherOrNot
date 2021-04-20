@@ -56,6 +56,6 @@ export class WeatherOrNot {
   }
 
   getWeatherUpdates() {
-    // Not sure what he has in mind for this.
+    // Not sure what this will look like
   }
 }
