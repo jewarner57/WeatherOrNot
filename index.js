@@ -8,7 +8,7 @@ export class WeatherOrNot {
     this.cityID = ""
     this.lat = 0
     this.lon = 0
-    this.useMetric = false
+    this.units = 'metric'
   }
 
   // Get the openweather api url for this object for a specific location type
@@ -58,5 +58,4 @@ export class WeatherOrNot {
   getWeatherUpdates() {
     // Not sure what he has in mind for this.
   }
-
 }
