@@ -59,3 +59,11 @@ export class WeatherOrNot {
     // Not sure what this will look like
   }
 }
+
+let w = new WeatherOrNot('3ec9bf803e2be1709ff0a2b7dc503967')
+w.zip = "94109"
+w.weatherForZip().then((weather) => {
+  console.log(weather)
+}).catch((err) => {
+  console.log(err)
+})
