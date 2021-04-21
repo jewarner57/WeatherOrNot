@@ -74,12 +74,3 @@ export class WeatherOrNot {
     return "No Interval to Stop"
   }
 }
-
-let w = new WeatherOrNot("b190a0605344cc4f3af08d0dd473dd25")
-w.zip = "22802"
-w.getWeatherUpdates((res) => {
-  res.then((obj) => {
-    console.log(obj)
-    w.endWeatherUpdates()
-  })
-})
