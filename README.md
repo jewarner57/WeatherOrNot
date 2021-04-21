@@ -80,3 +80,16 @@ w.weatherForGeo()
   cod: 200
 }
 ```
+
+#### Get Current Weather Updates
+``` javascript
+  w.getWeatherUpdates(callback)
+```
+* Calls the callback every 30 minutes with new weather data.
+* Gets the weatherForZip() and sends the weather data promise to the callback function
+
+### End Current Weather Updates
+``` javascript
+  w.endWeatherUpdates()
+```
+* Stops sending weather updates to the callback

@@ -55,7 +55,31 @@ export class WeatherOrNot {
     return this.reqApi(this.getUrlString(this.zip, "zip"))
   }
 
-  getWeatherUpdates() {
-    // Not sure what this will look like
+  getWeatherUpdates(callback) {
+    callback(this.weatherForZip())
+
+    this.interval = setInterval(() => {
+
+      callback(this.weatherForZip())
+
+    }, 10000) //1800000
+  }
+
+  endWeatherUpdates() {
+    if (this.interval) {
+      clearInterval(this.interval)
+      this.interval = undefined
+      return "Interval Stopped Successfully"
+    }
+    return "No Interval to Stop"
   }
 }
+
+let w = new WeatherOrNot("b190a0605344cc4f3af08d0dd473dd25")
+w.zip = "22802"
+w.getWeatherUpdates((res) => {
+  res.then((obj) => {
+    console.log(obj)
+    w.endWeatherUpdates()
+  })
+})
