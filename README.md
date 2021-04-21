@@ -3,9 +3,9 @@
 <br>
 
 ### Clear skys are ahead. Lets get started: 
-* [Download WeatherOrNot on npm](https://www.npmjs.org)
+* Download [WeatherOrNot](https://www.npmjs.org) from npm
 
-### Get yourself an Open Weather API key for free!
+### Grab yourself an Open Weathermap API key for free!
 * [https://openweathermap.org/](https://openweathermap.org/)
 
 <br>
@@ -27,6 +27,14 @@ w.cityID = 42
 w.lat = 37.76
 w.lon = -122.41
 ```
+
+#### Change the units
+``` javascript
+// You can change what units the weather is returned in:
+// Weather is in metric by default
+w.units = "imperial"
+```
+
 #### Get the weather
 ``` javascript
 // You can get the weather using, zipcode, city name, city ID, and geocoordinates
@@ -36,11 +44,4 @@ w.weatherForZip()
 w.weatherForCity()
 w.weatherForId()
 w.weatherForGeo()
-```
-
-#### Change the units
-``` javascript
-// You can change what units the weather is returned in:
-// Weather is in metric by default
-w.units = "imperial"
 ```
