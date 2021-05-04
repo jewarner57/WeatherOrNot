@@ -85,7 +85,3 @@ class WeatherOrNot {
 }
 
 exports.WeatherOrNot = WeatherOrNot
-
-const w = new WeatherOrNot('20c0cb1514e2cf3462e90d9133dcfa1d')
-w.zip = '22801'
-w.weatherForZip().then((weather) => { console.log(weather) })
